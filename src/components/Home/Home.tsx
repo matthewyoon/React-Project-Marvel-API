@@ -26,11 +26,11 @@ const useStyles = makeStyles({
         margin: '0 0 0 0.45em'
     },
     logo_a: {
-        color: 'rgb(28,24,22)'
+        color: 'white'
     },
     logo_navigation: {
         listStyle: 'none',
-        textTransform: 'uppercase',
+        textTransform: 'capitalize',
         textDecoration: 'none;',
         fontFamily: 'sans-serif'
     },
@@ -40,12 +40,16 @@ const useStyles = makeStyles({
     nav_a: {
         display: 'flex',
         padding: '1em',
-        color: 'black',
+        color: 'white',
         fontFamily: 'sans-serif',
         textDecoration: 'none'
     },
     credit:{
-        fontSize: '8px'
+        fontSize: '9px',
+        color: 'white',
+        fontFamily: 'sans-serif',
+        margin: '0 0 0 .8vw'
+
     },
     main: {
         backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${marvel_homepage})`,
@@ -58,12 +62,20 @@ const useStyles = makeStyles({
     },
     main_text: {
         textAlign: 'center',
+        border: '1px solid black',
         position: 'relative',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         color: 'white',
-        paddingBottom: '2px'
+        textShadow: '1px 1px 4px black',
+        maxWidth: '500px',
+        padding: '30px 10px 30px 10px',
+        backgroundColor: 'rgba(255,255,255,0.3)',
+        fontFamily: 'sans-serif'
+    },
+    transparent:{
+        backgroundColor: 'rgba(255,255,255,0.8)',
     }
 })
 
@@ -74,6 +86,33 @@ export const Home = ( props:Props) => {
     return (
         <div className = {classes.root}>
             { /* Nav Bar Code Here */ }
+            {/* <nav>
+                <div className={classes.navbar_container}>
+                    <h1 className={classes.logo}>
+                        <Link to="/" className={ `${classes.logo_a} ${classes.logo_navigation}`}>{props.title}</Link>
+                    </h1>
+                    <ul className={ `${classes.navigation} ${classes.logo_navigation}`}>
+                        <li>
+                            <Link to="/" className={classes.nav_a}>Home</Link>
+                        </li>
+                        
+                        <AuthCheck fallback={
+                            <li>
+                                <Link to="/signin" className={classes.nav_a}>Sign In</Link>
+                            </li>
+                        }>                       
+                        <li>
+                            <Link to="/dashboard" className={classes.nav_a}>Dashboard</Link>
+                        </li>
+                        <li>
+                            <Link to="/signin" className={classes.nav_a}>Sign Out</Link>
+                        </li>
+                        </AuthCheck>
+                    </ul>
+                </div>
+            </nav> */}
+
+            <main className={classes.main}>
             <nav>
                 <div className={classes.navbar_container}>
                     <h1 className={classes.logo}>
@@ -99,12 +138,10 @@ export const Home = ( props:Props) => {
                     </ul>
                 </div>
             </nav>
-
-            <main className={classes.main}>
             <p className={classes.credit}>Photo By: Erik Mclean</p>
                 <div className={classes.main_text}>
                     <h1> { props.title }</h1>
-                    <p>I Like Drones!</p>
+                    
                     <Link to = '/signin'>
                         <Button color = 'primary' variant = 'contained'>Sign In</Button>
                     </Link>

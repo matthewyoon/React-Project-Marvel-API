@@ -21,7 +21,7 @@ ReactDOM.render(
       <Switch>
 
         <Route exact path = '/'>
-          <Home title={'Rangers 59 Drone Inventory'}/> 
+          <Home title={'Marvel Character Inventory'}/> 
         </Route>
 
         <Route path = '/dashboard' component = { Dashboard } />

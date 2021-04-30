@@ -26,7 +26,7 @@ export const server_calls = {
             body: JSON.stringify(data)
         });
         if(!response.ok){
-            console.log('Failed to create new drone data')
+            console.log('Failed to create new character data')
         }
 
         return await response.json()
@@ -41,7 +41,7 @@ export const server_calls = {
             body: JSON.stringify(data) 
         });
         if(!response.ok){
-            console.log('Failed to update new drone data')
+            console.log('Failed to update new character data')
         }
     },
     delete: async (id:string) => {

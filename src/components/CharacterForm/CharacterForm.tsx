@@ -33,12 +33,12 @@ export const CharacterForm = (props:CharacterFormProps) => {
         if( props.id!){
             server_calls.update(props.id!, data)
             console.log(`Updated:${data} ${props.id}`)
-            window.location.reload()
+            // window.location.reload()
             event.target.reset();
         } else {
             dispatch(chooseName(data.name))
             server_calls.create(store.getState())
-            window.location.reload()
+            // window.location.reload()
         }
     }
 

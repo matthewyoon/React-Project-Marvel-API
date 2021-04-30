@@ -10,7 +10,7 @@ import { Button, Dialog,
 import { CharacterForm } from '../../components/CharacterForm';
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 150 },
+    { field: 'id', headerName: 'ID', width: 80 },
     { field: 'name', headerName: 'Name', width: 150 },
     { field: 'description', headerName: 'Description', width: 200 },
     { field: 'super_power', headerName: 'Super Power', type: 'string', width: 160, },
@@ -61,7 +61,7 @@ const columns: GridColDef[] = [
             </DialogContent>
             <DialogActions>
               <Button onClick = {handleClose} color="primary">Cancel</Button>
-              <Button onClick={handleClose} color = "primary">Done</Button> 
+              <Button onClick = {handleClose} color = "primary">Done</Button> 
             </DialogActions>
           </Dialog>
           </div>
