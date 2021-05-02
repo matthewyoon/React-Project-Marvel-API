@@ -64,7 +64,7 @@ const useStyles = makeStyles({
         textAlign: 'center',
         border: '1px solid black',
         position: 'relative',
-        top: '50%',
+        top: '40%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         color: 'white',
@@ -85,35 +85,9 @@ export const Home = ( props:Props) => {
     const classes = useStyles();
     return (
         <div className = {classes.root}>
-            { /* Nav Bar Code Here */ }
-            {/* <nav>
-                <div className={classes.navbar_container}>
-                    <h1 className={classes.logo}>
-                        <Link to="/" className={ `${classes.logo_a} ${classes.logo_navigation}`}>{props.title}</Link>
-                    </h1>
-                    <ul className={ `${classes.navigation} ${classes.logo_navigation}`}>
-                        <li>
-                            <Link to="/" className={classes.nav_a}>Home</Link>
-                        </li>
-                        
-                        <AuthCheck fallback={
-                            <li>
-                                <Link to="/signin" className={classes.nav_a}>Sign In</Link>
-                            </li>
-                        }>                       
-                        <li>
-                            <Link to="/dashboard" className={classes.nav_a}>Dashboard</Link>
-                        </li>
-                        <li>
-                            <Link to="/signin" className={classes.nav_a}>Sign Out</Link>
-                        </li>
-                        </AuthCheck>
-                    </ul>
-                </div>
-            </nav> */}
-
             <main className={classes.main}>
             <nav>
+                {/* NavBar Code within the background image */}
                 <div className={classes.navbar_container}>
                     <h1 className={classes.logo}>
                         <Link to="/" className={ `${classes.logo_a} ${classes.logo_navigation}`}>{props.title}</Link>
@@ -142,9 +116,23 @@ export const Home = ( props:Props) => {
                 <div className={classes.main_text}>
                     <h1> { props.title }</h1>
                     
-                    <Link to = '/signin'>
+
+                    <AuthCheck fallback={
+                            
+                        <Link to="/signin">
+                            <Button color = 'primary' variant = 'contained'>Sign In</Button>
+                        </Link>
+                            
+                        }>     
+
+                        <Link to="/dashboard">
+                            <Button color = 'primary' variant = 'contained'>Dashboard</Button>
+                        </Link>
+                        </AuthCheck>
+
+                    {/* <Link to = '/signin'>
                         <Button color = 'primary' variant = 'contained'>Sign In</Button>
-                    </Link>
+                    </Link> */}
                 </div>
             </main>
         </div>

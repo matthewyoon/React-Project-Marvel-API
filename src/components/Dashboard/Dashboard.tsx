@@ -27,6 +27,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import clsx from 'clsx';
 import { RouteComponentProps, withRouter, Switch, Route } from 'react-router-dom'
+import spider_man from '../../assets/images/spider_man.jpg'
 
 const drawerWidth = 240;
 
@@ -78,6 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen,
       }),
       marginLeft: -drawerWidth,
+      color: 'white'
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -93,7 +95,16 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbar_button: {
       marginLeft: 'auto',
       color: 'white'
-    }
+    },
+    background: {
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${spider_man})`,
+      width: '100%',
+      height: '100%',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      position: 'absolute'
+    },
     })
 )
 
@@ -142,6 +153,7 @@ export const Dashboard = withRouter ( (props:DashProps)  => {
         }
     ]
     return (
+      <div className={classes.background}>
         <div className={classes.root}>
             <CssBaseline />
             <AppBar position = 'fixed' className = {clsx(classes.appBar, { [classes.appBarShift]: open })}>
@@ -154,11 +166,14 @@ export const Dashboard = withRouter ( (props:DashProps)  => {
 
           {/*Dialog Pop Up begin */}
           <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby="form-dialog-title">
+          
           <DialogTitle id="form-dialog-title">Add New Character</DialogTitle>
+          
           <DialogContent>
             <DialogContentText>Add A New Character</DialogContentText>
               <CharacterForm />
           </DialogContent>
+
           <DialogActions>
             <Button onClick = {handleDialogClickClose} color="primary">Cancel</Button>
             <Button onClick={handleDialogClickClose} color = "primary">Done</Button> 
@@ -192,6 +207,7 @@ export const Dashboard = withRouter ( (props:DashProps)  => {
                 <div className={classes.drawerHeader}/>
                     <DataTable />
             </main>
+        </div>
         </div>
     )
 })

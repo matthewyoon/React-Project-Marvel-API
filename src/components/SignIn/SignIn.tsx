@@ -6,6 +6,8 @@ import { Input } from '../sharedComponents/Input';
 import { Container, Button, makeStyles, Typography, Snackbar,  } from '@material-ui/core';
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import { Link } from 'react-router-dom'
+import sign_in from '../../assets/images/sign_in.jpg'
 
 // Functional component created inside of this component
 // Will only be used to close snackbar
@@ -42,11 +44,59 @@ const useStyles = makeStyles({
         fontSize: '2em'
     },
     containerStyle:{
-        marginTop: '2em'
+        marginTop: '15vh',
+        border: '1px solid black',
+        color: 'white',
+        textShadow: '1px 1px 4px black',
+        maxWidth: '550px',
+        padding: '30px 10px 30px 10px',
+        backgroundColor: 'rgba(255,255,255,0.5)',
+        fontFamily: 'sans-serif'
     },
     snackBar:{
         color: 'white',
         backgroundColor: '#4caf50'
+    },
+    navbar_container: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    logo: {
+        margin: '0 0 0 0.45em'
+    },
+    logo_a: {
+        color: 'white',
+        textShadow: '1px 1px 4px black'
+    },
+    logo_navigation: {
+        listStyle: 'none',
+        textTransform: 'capitalize',
+        textDecoration: 'none;',
+        fontFamily: 'sans-serif'
+    },
+    navigation: {
+        display: 'flex'
+    },
+    nav_a: {
+        display: 'flex',
+        padding: '1em',
+        color: 'white',
+        textShadow: '1px 1px 4px black',
+        fontFamily: 'sans-serif',
+        textDecoration: 'none'
+    },
+    main: {
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${sign_in})`,
+        width: '100%',
+        height: '100%',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        position: 'absolute'
+    },
+    topspace:{
+        marginTop: '1.5vh'
     }
 })
 
@@ -54,6 +104,7 @@ interface SignInProps{
     history: RouteComponentProps["history"];
     location: RouteComponentProps["location"];
     match: RouteComponentProps["match"];
+    title: string;
 }
 
 export const SignIn = withRouter( (props:SignInProps) => {
@@ -89,6 +140,33 @@ export const SignIn = withRouter( (props:SignInProps) => {
 
     return (
         <div>
+            <main className={classes.main}>
+            <nav>
+                {/* NavBar Code within the background image */}
+                <div className={classes.navbar_container}>
+                    <h1 className={classes.logo}>
+                        <Link to="/" className={ `${classes.logo_a} ${classes.logo_navigation}` }>{props.title}</Link>
+                    </h1>
+                    <ul className={ `${classes.navigation} ${classes.logo_navigation}`}>
+                        <li>
+                            <Link to="/" className={classes.nav_a}>Home</Link>
+                        </li>
+                        
+                        <AuthCheck fallback={
+                            <li>
+                                <Link to="/signin" className={classes.nav_a}>Sign In</Link>
+                            </li>
+                        }>                       
+                        <li>
+                            <Link to="/dashboard" className={classes.nav_a}>Dashboard</Link>
+                        </li>
+                        <li>
+                            <Link to="/signin" className={classes.nav_a}>Sign Out</Link>
+                        </li>
+                        </AuthCheck>
+                    </ul>
+                </div>
+            </nav>
             <Container maxWidth = 'sm' className={classes.containerStyle}>
                 <Typography className={classes.typographyStyle}>Sign In Below</Typography>
                 <form>
@@ -106,7 +184,7 @@ export const SignIn = withRouter( (props:SignInProps) => {
                 <AuthCheck fallback={
                     <Button className={classes.googleButton} onClick = {sign_in}>Sign In With Google</Button>
                 }>
-                    <Button variant='contained' color='secondary' onClick={sign_out}>Sign Out</Button>
+                    <Button variant='contained' color='secondary' className={classes.topspace} onClick={sign_out}>Sign Out</Button>
                 </AuthCheck>
                 <Snackbar message={'Success!'} open={open} autoHideDuration={6000} onClose={handleSnackClose}>
                     <Alert onClose={handleSnackClose} severity='success'>
@@ -114,6 +192,7 @@ export const SignIn = withRouter( (props:SignInProps) => {
                     </Alert>
                 </Snackbar>
             </Container>
+            </main>
         </div>
     )
 })
